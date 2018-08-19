@@ -47,9 +47,3 @@ def get_clean_test_data(age_cuts: list, age_labels: list):
     test_data = get_titanic_test_data()
     test_data = clean_titanic_data(test_data, age_cuts, age_labels)
     return test_data
-
-
-cuts = [-1, 0, 5, 12, 18, 35, 60, 100]
-label_names = ["Missing", 'Infant', "Child", 'Teenager', "Young Adult", 'Adult', 'Senior']
-x = get_clean_train_data(cuts, label_names)
-print(x.columns)
