@@ -1,6 +1,6 @@
 # Titanic Dataset Analysis
 
-## Factors Used in Analysis
+## Overview
 Factors that were used in data analysis for the Titanic dataset:
 - Ticket Class (`Pclass`)
 - Age category (`Age`)
