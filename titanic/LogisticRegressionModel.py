@@ -1,4 +1,5 @@
 import DataImport as di
+import pandas as pd
 
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
@@ -24,12 +25,21 @@ def get_lr_model() -> LogisticRegression:
     return lr_model
 
 
+def save_results_in_csv(predictions: list, test_set: pd.DataFrame):
+    results = pd.DataFrame(index=range(predictions.size), columns=[])
+    results["PassengerId"] = test_set["PassengerId"]
+    results["Survived"] = predictions
+    results.to_csv("Titanic Predictions.csv", index=False)
+
+
 def get_lr_model_test_accuracy() -> float:
-    titanic_test_X = di.get_clean_test_data()[COLUMN_NAMES]
+    titanic_test_set = di.get_clean_test_data()
+    titanic_test_X = titanic_test_set[COLUMN_NAMES]
     titanic_test_y = di.get_titanic_test_results()['Survived']
     lr_model = get_lr_model()
     predictions = lr_model.predict(titanic_test_X)
+    save_results_in_csv(predictions, titanic_test_set)
     return accuracy_score(titanic_test_y, predictions)
 
 
-print(get_lr_model_test_accuracy())  # 0.97847
+print(get_lr_model_test_accuracy())
