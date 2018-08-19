@@ -36,6 +36,7 @@ def clean_titanic_data(data: pd.DataFrame) -> pd.DataFrame:
     data = create_dummies(data, 'Pclass')
     data = create_dummies(data, 'Age_category')
     data = create_dummies(data, 'Sex')
+    data = create_dummies(data, 'SibSp')
     return data
 
 

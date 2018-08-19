@@ -8,7 +8,8 @@ from sklearn.metrics import accuracy_score
 COLUMN_NAMES = ['Pclass_1', 'Pclass_2', 'Pclass_3', 'Age_category_Missing',
                 'Age_category_Infant', 'Age_category_Child', 'Age_category_Teenager',
                 'Age_category_Young Adult', 'Age_category_Adult', 'Age_category_Senior',
-                'Sex_female', 'Sex_male']
+                'Sex_female', 'Sex_male', 'SibSp_0', 'SibSp_1', 'SibSp_2', 'SibSp_3',
+                'SibSp_4', 'SibSp_5', 'SibSp_8']
 
 
 def build_train_set() -> list:
