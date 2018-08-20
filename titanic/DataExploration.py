@@ -1,5 +1,6 @@
 import DataImport as di
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 
 def plot_survival_by_gender():
@@ -44,3 +45,16 @@ def plot_survival_by_age_category():
     plt.xlabel("Age Group")
     plt.ylabel("Survival Rate")
     plt.savefig("Graph to Show Survival Rate by Age Category")
+
+
+def plot_survival_by_fare():
+    train_data = di.get_titanic_data()
+    plt.figure(figsize=(15, 8))
+    died_fare = train_data.loc[(train_data["Survived"] == 0), "Fare"]
+    survived_fare = train_data.loc[(train_data["Survived"] == 1), "Fare"]
+    sns.kdeplot(died_fare, color="gray", shade=True, label="Not Survived")
+    sns.kdeplot(survived_fare, color="g", shade=True, label="Survived")
+    plt.title("Fare Distribution of Passengers Based on Survival")
+    plt.xlabel("Fare")
+    plt.ylabel("Frequency of Passengers")
+    plt.savefig("Fare Distribution of Passengers Based on Survival")
