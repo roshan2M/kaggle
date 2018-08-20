@@ -54,7 +54,7 @@ def plot_survival_by_fare():
     survived_fare = train_data.loc[(train_data["Survived"] == 1), "Fare"]
     sns.kdeplot(died_fare, color="gray", shade=True, label="Not Survived")
     sns.kdeplot(survived_fare, color="g", shade=True, label="Survived")
-    plt.title("Fare Distribution of Passengers Based on Survival")
+    plt.title("Graph to Show Survival Rate by Fare")
     plt.xlabel("Fare")
     plt.ylabel("Frequency of Passengers")
-    plt.savefig("Fare Distribution of Passengers Based on Survival")
+    plt.savefig("Graph to Show Survival Rate by Fare")
