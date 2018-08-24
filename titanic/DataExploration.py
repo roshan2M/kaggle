@@ -58,3 +58,17 @@ def plot_survival_by_fare():
     plt.xlabel("Fare")
     plt.ylabel("Frequency of Passengers")
     plt.savefig("Graph to Show Survival Rate by Fare")
+
+
+def plot_feature_heatmap():
+    train_data = di.get_titanic_data()
+    plt.figure(figsize=(14, 12))
+    correlation_matrix = train_data.corr(method='spearman')
+    sns.heatmap(correlation_matrix, square=True, annot=True)
+    plt.title("Heatmap of Correlation of Different Features", size=24)
+    plt.xlabel("Feature", size=20)
+    plt.ylabel("Feature", size=20)
+    plt.savefig("Heatmap of Correlation of Different Features")
+
+
+plot_feature_heatmap()
