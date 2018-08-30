@@ -18,15 +18,25 @@ def get_train_test_comment_vectors():
     comment_vectors = vc.get_comment_vectors(toxic_comments_train_set)
     train_idx, test_idx = split_data(toxic_comments_train_set)
 
-    modelling_vectors = comment_vectors[train_idx]
-    evaluation_vectors = comment_vectors[test_idx]
-    return modelling_vectors, evaluation_vectors
+    train_vectors = comment_vectors[train_idx]
+    test_vectors = comment_vectors[test_idx]
+    return train_vectors, test_vectors
 
 
 def get_train_test_comment_classes():
     toxic_comments_train_set = di.load_train_data()
     train_idx, test_idx = split_data(toxic_comments_train_set)
 
-    modelling_classes = toxic_comments_train_set[di.CATEGORIES].loc[train_idx]
-    evaluation_classes = toxic_comments_train_set[di.CATEGORIES].loc[test_idx]
-    return modelling_classes, evaluation_classes
+    train_classes = toxic_comments_train_set[di.CATEGORIES].loc[train_idx]
+    test_classes = toxic_comments_train_set[di.CATEGORIES].loc[test_idx]
+    return train_classes, test_classes
+
+
+def get_evaluation_vectors():
+    toxic_comments_test_set = di.load_test_data()
+    return vc.get_comment_vectors(toxic_comments_test_set)
+
+
+def get_testing_set_ids():
+    toxic_comments_test_set = di.load_test_data()
+    return toxic_comments_test_set['id']

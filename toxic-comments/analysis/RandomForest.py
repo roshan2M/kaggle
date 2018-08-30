@@ -7,6 +7,7 @@ from sklearn.neural_network import MLPClassifier
 import Evaluation as ev
 import DataImport as di
 import numpy as np
+import pandas as pd
 
 
 class ExtendedMultiOutputClassifier(MultiOutputClassifier):
@@ -32,7 +33,27 @@ clf = Pipeline([('moc_rf', moc), ('nnc', nnc)])
 clf.fit(train_vectors, train_classes)
 
 predictions = clf.predict_proba(test_vectors)
+print('Predictions:')
+print(predictions)
 diff = predictions - test_classes
-msd = np.sum(list(map(lambda x: np.dot(x, x.T), diff.as_matrix()))) / float(len(diff))
-print('Mean Squared Error: {0}'.format(msd))
-print('Accuracy: {0}'.format(1 - msd))
+msd = np.sum(list(map(lambda x: np.dot(x, x.T), diff.values))) / float(len(diff))
+print('Test Mean Squared Error: {0}'.format(msd))
+print('Test Accuracy: {0}'.format(1 - msd))
+
+testing_set_vectors = ev.get_evaluation_vectors()
+print(testing_set_vectors)
+testing_predictions = clf.predict_proba(testing_set_vectors)
+print('Predictions: ')
+print(testing_predictions)
+print(len(testing_predictions))
+print(len(ev.get_testing_set_ids()))
+
+output_df = pd.DataFrame()
+output_df['id'] = ev.get_testing_set_ids()
+output_df['toxic'] = testing_predictions[:, 0]
+output_df['severe_toxic'] = testing_predictions[:, 1]
+output_df['obscene'] = testing_predictions[:, 2]
+output_df['threat'] = testing_predictions[:, 3]
+output_df['insult'] = testing_predictions[:, 4]
+output_df['identity_hate'] = testing_predictions[:, 5]
+output_df.to_csv(path_or_buf='predictions.csv')

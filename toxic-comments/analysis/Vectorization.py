@@ -29,8 +29,8 @@ def get_comment_vectors(toxic_comments_data):
 
 
 def plot_reduced_comment_vectors(comment_vectors):
-    two_D_vectors = TruncatedSVD(n_components=2).fit_transform(comment_vectors)
-    plt.scatter(two_D_vectors[:, 0], two_D_vectors[:, 1], color='red')
+    two_d_vectors = TruncatedSVD(n_components=2).fit_transform(comment_vectors)
+    plt.scatter(two_d_vectors[:, 0], two_d_vectors[:, 1], color='red')
     plt.title("2D Plot of Reduced Comment Vectors (using SVD)")
     plt.xlabel("Reduced Feature 1")
     plt.ylabel("Reduced Feature 2")
