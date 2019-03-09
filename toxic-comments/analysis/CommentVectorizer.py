@@ -1,6 +1,5 @@
 from sklearn.feature_extraction.text import CountVectorizer
 
-
 class CommentVectorizer:
     def __init__(self):
         self._vectorizers = []
